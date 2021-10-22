@@ -1,6 +1,19 @@
 <h1>Meu primeiro componente.</h1>
 <h2>{{ title }}</h2>
 <button (click)="alteraTexto()">Alterar</button>
+<hr>
+
+<form [formGroup]="form">
+  <fieldset>
+    <label>Tarefa: </label>
+    <input type="text" placeholder="insira a tarefa" maxlength="48" formControlName="title">
+    <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 4 e 48 caracteres</small>
+    <button [disabled]="form.invalid">Salvar</button>
+  </fieldset>
+</form>
+
+<hr>
+
 <ul>
   <li *ngFor="let item of todos">{{ item.id }} -  {{ item.todo }} 
     <button (click)="markAsDone(item)" *ngIf="!item.done">Concluir</button> <button (click)="markAsUndone(item)" *ngIf="item.done">Refazer</button> | 

@@ -1,14 +1,14 @@
 <h1>Meu primeiro componente.</h1>
 <h2>{{ title }}</h2>
 <button (click)="alteraTexto()">Alterar</button>
+<p *ngIf="todos.length==0"><small>Não há nenhuma tarefa hoje.</small></p>
 <hr>
-
 <form [formGroup]="form">
   <fieldset>
     <label>Tarefa: </label>
     <input type="text" placeholder="insira a tarefa" maxlength="48" formControlName="title">
     <small *ngIf="form.controls.title.invalid && !form.controls.title.pristine">Este campo deve conter entre 4 e 48 caracteres</small>
-    <button [disabled]="form.invalid">Salvar</button>
+    <button (click)="add()" [disabled]="form.invalid">Salvar</button>
   </fieldset>
 </form>
 

@@ -23,15 +23,33 @@ export class AppComponent {
         Validators.required,
       ])]
     })
-
-    this.todos.push(new Todo(1, 'Passear com o cachorro', false));
-    this.todos.push(new Todo(2, 'ir ao supermercado', true));
-    this.todos.push(new Todo(3, 'jogar mir4', true));
   }
 
   alteraTexto(){
     this.title = 'Teste';
   }
+
+  clear(){
+    this.form.reset();
+  }
+
+  add(){
+    const title = this.form.controls['title'].value;
+    var id: number;
+    if (this.todos.length == 0){
+      id = 1;
+    }
+    else{
+      id = this.todos[this.todos.length -1].id +1;
+    }
+    this.clear();
+    
+
+    this.todos.push(new Todo(id, title, false));
+  }
+
+
+
   remove(todo: Todo){
     const index = this.todos.indexOf(todo);
     if (index !== -1){
